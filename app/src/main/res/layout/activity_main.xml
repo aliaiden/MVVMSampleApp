@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="taskAssignmentViewModel"
+            type="com.example.samplefornew.viewmodel.FixedTaskViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.example.samplefornew.MainActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.TaskAssignmentActivity">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarAssignTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Assign Task"
+            app:titleTextColor="@android:color/white"></com.google.android.material.appbar.MaterialToolbar>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarAssignTask">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:checked="@={taskAssignmentViewModel.mainTaskModelMutableLiveData.open}"
+                    android:text="Open Sub Tasks"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginRight="6dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvSelectMsr"
+                    app:layout_constraintEnd_toEndOf="@id/tvSelectMsr"
+                    app:layout_constraintTop_toTopOf="@id/tvSelectMsr"></ImageView>
+
+                <TextView
+                    android:id="@+id/tvSelectMsr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="15dp"
+                    android:paddingEnd="40dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@id/checkBox"
+                    app:layout_constraintStart_toStartOf="@id/checkBox"
+                    app:layout_constraintTop_toBottomOf="@id/checkBox"></TextView>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvSelectMsr"
+                    app:layout_constraintEnd_toEndOf="@id/tvSelectMsr"
+                    app:layout_constraintStart_toStartOf="@id/tvSelectMsr"></View>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvAddProduct"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="@id/tvSelectMsr"
+                    app:layout_constraintStart_toStartOf="@id/tvSelectMsr"
+                    app:layout_constraintTop_toBottomOf="@id/tvSelectMsr">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ivAddProduct"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:padding="8dp"
+                            android:src="@drawable/add_product"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:gravity="center_vertical"
+                            android:paddingEnd="8dp"
+                            android:text="Add Products"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@id/ivAddProduct"
+                            app:layout_constraintStart_toEndOf="@id/ivAddProduct"
+                            app:layout_constraintTop_toTopOf="@id/ivAddProduct"></TextView>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/ivAddProduct"
+                            app:layout_constraintTop_toBottomOf="@id/ivAddProduct"></androidx.recyclerview.widget.RecyclerView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvStart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Start"
+                    app:layout_constraintStart_toStartOf="@id/tvSelectMsr"
+                    app:layout_constraintTop_toBottomOf="@id/cvAddProduct"></TextView>
+
+                <LinearLayout
+                    android:id="@+id/llStartDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="end"
+                    android:onClick="@{() -> fragment.onStartDateClicked()}"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvStart"
+                    app:layout_constraintEnd_toStartOf="@id/llStartTime"
+                    app:layout_constraintStart_toEndOf="@+id/tvStart"
+                    app:layout_constraintTop_toTopOf="@+id/tvStart">
+
+                    <TextView
+                        android:id="@+id/tvStartDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{taskAssignmentViewModel.mainTaskModelMutableLiveData.startDate}"
+                        android:textColor="@android:color/black" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_calendar" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llStartTime"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="end"
+                    android:onClick="@{() -> fragment.onStartTimeClicked()}"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvStart"
+                    app:layout_constraintEnd_toEndOf="@+id/cvAddProduct"
+                    app:layout_constraintTop_toTopOf="@+id/tvStart">
+
+                    <TextView
+                        android:id="@+id/tvStartTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@{taskAssignmentViewModel.mainTaskModelMutableLiveData.startTime}"
+                        android:textColor="@android:color/black" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_clock" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="End"
+                    app:layout_constraintStart_toStartOf="@id/tvStart"
+                    app:layout_constraintTop_toBottomOf="@id/tvStart"></TextView>
+
+                <LinearLayout
+                    android:id="@+id/llEndDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="end"
+                    android:onClick="@{() -> fragment.onEndDateClicked()}"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvEnd"
+                    app:layout_constraintEnd_toStartOf="@id/llEndTime"
+                    app:layout_constraintStart_toStartOf="@+id/llStartDate"
+                    app:layout_constraintTop_toTopOf="@+id/tvEnd">
+
+                    <TextView
+                        android:id="@+id/tvEndDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{taskAssignmentViewModel.mainTaskModelMutableLiveData.endDate}"
+                        android:textColor="@android:color/black" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_calendar" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llEndTime"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:gravity="end"
+                    android:onClick="@{() -> fragment.onEndTimeClicked()}"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvEnd"
+                    app:layout_constraintEnd_toEndOf="@+id/cvAddProduct"
+                    app:layout_constraintTop_toTopOf="@+id/tvEnd">
+
+                    <TextView
+                        android:id="@+id/tvEndTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{taskAssignmentViewModel.mainTaskModelMutableLiveData.endTime}"
+                        android:textColor="@android:color/black" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_clock" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPriority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Priority"
+                    app:layout_constraintStart_toStartOf="@id/tvSelectMsr"
+                    app:layout_constraintTop_toBottomOf="@id/llEndDate"></TextView>
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPriority">
+
+                    <RadioButton
+                        android:id="@+id/rbLowPriority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> taskAssignmentViewModel.mainTaskModelMutableLiveData.setPriority(1)}"
+                        android:text="Low Priority"
+                        app:layout_constraintEnd_toStartOf="@+id/rbNormalPriority"
+                        app:layout_constraintStart_toStartOf="@id/tvSelectMsr"
+                        app:layout_constraintTop_toBottomOf="@id/tvPriority" />
+
+                    <RadioButton
+                        android:id="@+id/rbNormalPriority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> taskAssignmentViewModel.mainTaskModelMutableLiveData.setPriority(2)}"
+                        android:text="Normal Priority"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvPriority" />
+
+                    <RadioButton
+                        android:id="@+id/rbHighPriority"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> taskAssignmentViewModel.mainTaskModelMutableLiveData.setPriority(3)}"
+                        android:text="High Priority"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/rbNormalPriority"
+                        app:layout_constraintTop_toBottomOf="@id/tvPriority" />
+
+                </RadioGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/etLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:boxBackgroundColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="@id/tvSelectMsr"
+                    app:layout_constraintStart_toStartOf="@id/tvSelectMsr"
+                    app:layout_constraintTop_toBottomOf="@id/radioGroup">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Notes"
+                        android:text="@={taskAssignmentViewModel.mainTaskModelMutableLiveData.notes}"></com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/next"
+            app:tint="@android:color/white"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
